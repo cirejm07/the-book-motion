@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+    <%- include('partials/head.ejs') %> 
+  <body>
+    <%- include('partials/navbar.ejs') %> 
+    <h1 class="text-center my-5">SIGN UP</h1>
+    <form class="w-50 mx-auto">
+      <div class="formError text-danger"></div>
+      
+        <div class="mb-3">
+         
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required>
+        </div>
+        <div class="mb-3">
+        
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="mb-3">
+        
+          <label for="security_question" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="repeat_password" name="repeat_password" aria-describedby="emailHelp" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign up</button>
+      </form>
+      
+
+      <%- include('partials/footer.ejs') %> 
+
+      <script>
+        const form = document.querySelector('form');
+        const isFormError = document.querySelector('.formError')
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          // reset errors
+          isFormError.textContent = '';
+          
+          // get the values
+          const name = form.name.value
+          const email = form.email.value
+          const password = form.password.value
+          const repeat_password = form.repeat_password.value
+          
+          try {
+            const res = await fetch('/signup', {
+              method: 'POST',
+              body: JSON.stringify({name, email, password, repeat_password}),
+              headers: {'Content-Type': 'application/json'}
+            });
+            const data = await res.json()
+            console.log(data)
+            if(data){
+              isFormError.textContent = data
+            }
+            if(data.savedUser){
+              location.assign('/')
+            }
+          }
+          catch(err){
+            console.log(err);
+          }
+
+        })
+      </script>
+
+  </body>
+</html>

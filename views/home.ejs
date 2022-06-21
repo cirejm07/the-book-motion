@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <%- include('partials/head.ejs') %> 
+  <body>
+    <%- include('partials/navbar.ejs') %> 
+
+    <div class="row container-fluid mx-auto d-block d-md-flex justify-content-around">
+      <div class="col-md-6 my-1 section-container border rounded-5 mx-auto">
+    <div id="view-books-container" class=" d-flex align-items-center p-5">
+      <img class="img-fluid index-img" src="img/books.gif" alt="">
+      <div>
+        <p class="fs-1 fw-bold text-light">The Book Motion</p>
+        <p class="fs-3 text-light">Get to see the book that fits your interest for <span class="fw-bolder text-danger">FREE</span></p>
+      <a class="btn btn-light text-info text-uppercase fw-bold" href="/books">View Books</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 my-1 section-container border rounded-5 mx-auto">
+    <div id="view-about-container" class=" d-flex align-items-center justify-content-end p-5">
+      <div>
+        <p class="fs-1 fw-bold text-light">About Us</p>
+        <p class="fs-3 fw-bold text-light">Get to know about our company and how we implement our mission and vision to our valued readers.</p>
+      <a class="btn btn-light text-info text-uppercase fw-bold" href="/about">See more</a>
+      </div>
+      <img class="img-fluid index-img py-5" src="img/about-us.gif" alt="">
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer.ejs') %> 
+  </body>
+</html>
