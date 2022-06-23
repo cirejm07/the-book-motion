@@ -1,4 +1,6 @@
 const User = require('../model/user');
+const Category = require('../model/Category');
+const Book = require('../model/Book');
 const { registrationValidation } = require('../middleware/validation');
 const { loginValidation } = require('../middleware/validation');
 const bcrypt = require('bcryptjs');
@@ -11,10 +13,12 @@ const { join } = require('path');
 
 const maxAge = 3 * 24 * 60 * 60; //3days
 const createToken = (id) => {
-    return jwt.sign({ id }, process.env.TOKEN_SECRETHANDSON5, {
+    return jwt.sign({ id }, process.env.TOKEN_SECRETMINIPROJECT2, {
         expiresIn: maxAge
     })
 }
+
+
 
 // index page
 module.exports.home_get = (req,res) => {
@@ -70,7 +74,7 @@ module.exports.login_post = async (req,res) => {
     
     // validation if working
     const {error, result} = loginValidation(req.body)
-    if(error) return res.status(400).json(error.details)
+    if(error) return res.status(400).json(error.details[0].message)
     // validate email
     const user = await User.findOne({email: req.body.email})
     if(!user) return res.status(400).json('email not found')
@@ -97,5 +101,21 @@ module.exports.logout_get = (req,res) => {
     // removing the token value
     // age = 1 ms
     res.cookie('jwt', '', {maxAge: 1});
-    res.redirect('/');
+    res.redirect('/home');
+}
+
+// view admin page
+module.exports.admin_get = (req,res) => {
+    res.render('admin');
+}
+
+// not authorized
+module.exports.notAuthorized_get = (req,res) => {
+    res.render('autherror')
+}
+
+// view book
+
+module.exports.get_books = (req,res) => {
+    res.render('books')
 }

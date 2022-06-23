@@ -22,6 +22,7 @@ const loginValidation = (data) => {
         return schema.validate(data);
     }
 
+
 //specific function path
 module.exports.registrationValidation = registrationValidation
 module.exports.loginValidation = loginValidation
