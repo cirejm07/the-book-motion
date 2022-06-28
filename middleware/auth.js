@@ -64,7 +64,7 @@ const verifyAdmin = (req,res,next) => {
                 let user = await User.findById(decodedToken.id);
                 
                 if(!user.isAdmin){
-                    return res.redirect('/home')
+                    return res.redirect('/')
                 } else {
                     next()
                 }

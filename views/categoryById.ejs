@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.98.0" />
+    <title>Admin</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/dashboard/"
+    />
+
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/c78afc380b.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header
+      class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
+    >
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#"
+        >The Book Motion</a
+      >
+      <button
+        class="navbar-toggler position-absolute d-md-none collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <span class="text-light">Admin, <%= user.name %></span>
+      <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+          <a class="nav-link px-3" href="/logout">Sign out</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav
+          id="sidebarMenu"
+          class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+        >
+          <div class="position-sticky pt-3">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/admin">
+                  <span data-feather="home" class="align-text-bottom"></span>
+                  Overview
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/users">
+                  <span data-feather="file" class="align-text-bottom"></span>
+                  Users
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/category">
+                  <span data-feather="home" class="align-text-bottom"></span>
+                  Category
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span
+                    data-feather="shopping-cart"
+                    class="align-text-bottom"
+                  ></span>
+                  Books
+                </a>
+              </li>
+            </ul>
+
+            <h6
+              class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase"
+            ></h6>
+          </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">Category ID: <span><%= categories._id %></span></h1>
+          </div>
+          
+          <div class="d-flex">
+          <form action="/category/<%= categories._id %>" method="POST" >
+            <div class="card" style="width: 25rem;">
+                <img src="<%= categories.image %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <input type="file" class="form-control" name="image" id="image" value="<%= categories.image %>" aria-describedby="emailHelp" disabled>
+                      </div>
+                        <div class="mb-3">
+                          <label for="name" class="form-label">Category Name</label>
+                          <input type="text" class="form-control" id="name" name="name" value="<%= categories.name %>" aria-describedby="emailHelp">
+                        </div>
+                        <p class="fs-4 fw-bold text-uppercase">active status: <code><%= categories.isActive %> </code></p>
+                        <select>
+                            <option disabled><%= categories.isActive %></option>
+                            <option value="true">Activate</option>
+                            <option value="false">Deactivate</option>
+                        </select>
+                        <br>
+                        <br>
+                        <button type="submit" class="btn btn-primary text-uppercase">Update</button>
+                       
+                </div>
+              </div>
+            </form>
+        </div>
+
+    <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+      integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+      integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../public/js/script.js"></script>
+  </body>
+</html>

@@ -1,7 +1,5 @@
 <div class="text-center d-flex">
-  <a class="ms-5 mt-3 fs-2 text-decoration-none" href="/home"
-    >The Book Motion</a
-  >
+  <a class="ms-5 mt-3 fs-2 text-decoration-none" href="/">The Book Motion</a>
   <ul class="d-flex list-unstyled ms-auto my-5">
     <!-- if there is a user, show user.name and logout -->
     <% if (user) { %>
@@ -19,6 +17,9 @@
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <p class="fw-bold text-center"><%= user.name %></p>
         <hr />
+        <li>
+          <a class="dropdown-item" href="/user/<%= user._id %>">Profile</a>
+        </li>
         <li><a class="dropdown-item" href="/logout">Logout</a></li>
       </ul>
     </div>

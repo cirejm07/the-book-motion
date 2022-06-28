@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const coverImageBasePath =  '../Images/userCovers'
+
 const userSchema = new mongoose.Schema({
     name:{
         type: String,
@@ -12,6 +14,9 @@ const userSchema = new mongoose.Schema({
         required: true,
         min: 6,
         max: 300
+    },
+    image:{
+        type:String,
     },
     password:{
         type: String,
@@ -45,5 +50,6 @@ const userSchema = new mongoose.Schema({
 // }
 
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('users', userSchema);
 module.exports = User;
+module.exports.coverImageBasePath = coverImageBasePath;
