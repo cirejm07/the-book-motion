@@ -114,10 +114,10 @@
                           <input type="text" class="form-control" id="name" name="name" value="<%= categories.name %>" aria-describedby="emailHelp">
                         </div>
                         <p class="fs-4 fw-bold text-uppercase">active status: <code><%= categories.isActive %> </code></p>
-                        <select>
+                        <select name="isActive" id="isActive">
                             <option disabled><%= categories.isActive %></option>
-                            <option value="true">Activate</option>
-                            <option value="false">Deactivate</option>
+                            <option name="isActive" value="true">Activate</option>
+                            <option name="isActive" value="false">Deactivate</option>
                         </select>
                         <br>
                         <br>

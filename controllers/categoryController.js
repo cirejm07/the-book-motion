@@ -64,7 +64,7 @@ module.exports.update_category = async (req,res) => {
 
     let categoryUpdate = await Category.findByIdAndUpdate(id, {
         name: req.body.name,
-        isAdmin: req.body.admin
+        isActive: req.body.isActive
     })
 
     if(categoryUpdate) {
