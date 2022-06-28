@@ -1,5 +1,5 @@
 // import
-
+const Category = require('./model/Category')
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -28,7 +28,21 @@ app.use('/css', express.static(__dirname + 'public/css'));
 app.use('/media', express.static(__dirname + 'public/media'));
 app.use('/js', express.static(__dirname + 'public/js'));
 app.use('/js', express.static(__dirname + 'public/assets'));
-app.use(express.static('Images'));
+app.use(express.static('uploads'));
+
+// image upload
+var storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, './uploads');
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname +"_"+ Date.now() +"_"+ file.originalname)
+    }
+})
+
+var upload = multer({
+    storage: storage,
+}).single('image');
 
 
 // routes
@@ -41,10 +55,44 @@ app.get('/admin', verifyAdmin, (req,res,next) =>{
 app.get('/users', verifyAdmin, (req,res,next) =>{
     next()
 });
+app.get('/category', verifyAdmin, (req,res,next) =>{
+    next()  
+});
+app.get('/addCategory', verifyAdmin, (req,res,next) =>{
+    next()  
+});
 app.get('/books', requireAuth,(req, res,next) => {
     next()
 })
 
+app.post('/addCategory', upload, (req,res,next) => {
+    const category = new Category ({
+        name: req.body.name,
+        image: req.file.filename
+    })
+    category.save()
+    res.redirect('/category')
+})
+
+app.post('/category/:id', upload, async (req,res,next) => {
+    if(req.file){
+    var data = {
+        ...req.body,
+        image: req.file.filename
+    }
+    } else{
+        var data = {
+            ...req.body,
+        }
+    }
+    let id = req.params.id;
+    console.log(req.file)
+    let categoryUpdate = await Category.findByIdAndUpdate(id, data)
+    
+    if(categoryUpdate) {
+        res.redirect('/category')
+    }
+})
 
 // admin
 // app.get('/home', requireAuth, verifyAdmin, (req,res,next) => res.render('home'));

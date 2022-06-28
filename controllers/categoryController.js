@@ -1,4 +1,5 @@
 const Category = require('../model/Category')
+const multer = require('multer');
 
 
 module.exports.get_category = (req,res) => {
@@ -9,16 +10,6 @@ module.exports.get_category = (req,res) => {
     .catch((err) => res.status(500).json(err))
 }
 
-module.exports.add_category = (req,res) => {
-    const category = new Category (
-        req.body
-    )
-    category.save()
-    .then((result) => {
-         res.status(200).json(result)
-    })
-    .catch(err => res.status(500).json(err))
-}
 
 module.exports.getById_category = (req, res) => {
     const id = req.params.id;
@@ -59,15 +50,19 @@ module.exports.inactive_category = async (req ,res) => {
    
 }
 
-module.exports.update_category = async (req,res) => {
-    let id = req.params.id;
+// module.exports.update_category = async (req,res) => {
+//     let id = req.params.id;
 
-    let categoryUpdate = await Category.findByIdAndUpdate(id, {
-        name: req.body.name,
-        isActive: req.body.isActive
-    })
+//     let categoryUpdate = await Category.findByIdAndUpdate(id, {
+//         name: req.body.name,
+//         isActive: req.body.isActive
+//     })
 
-    if(categoryUpdate) {
-        res.redirect('/category')
-    }
+//     if(categoryUpdate) {
+//         res.redirect('/category')
+//     }
+// }
+
+module.exports.view_addCategory = (req,res) => {
+    res.render('addCategoryView')
 }
