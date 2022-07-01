@@ -22,3 +22,16 @@ module.exports.getById_adminBook = (req, res) => {
 module.exports.add_adminBook = (req,res) => {
     res.render('adminAddBookView')
 }
+
+
+// ordinary
+module.exports.getById_ordinaryBook = (req, res) => {
+    const id = req.params.id;
+    Books.findById(id)
+    .then((result) => {
+        res.status(200).render('getbook',{books:result})
+    })
+    .catch((err) => {
+        res.status(500).json(err)
+    })
+}

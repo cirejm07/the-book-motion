@@ -25,6 +25,14 @@
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
 
+  <style>
+    img{
+      height: 250px;
+      width: 500px;
+    }
+  </style>
+
+
   <body>
     <header
       class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
@@ -104,8 +112,8 @@
           <div class="d-flex">
           <form action="/getBook/<%= books._id %>" method="POST" enctype="multipart/form-data">
             <div class="card" style="width: 25rem;">
-            <img src="<%= books.image %>" name="image" id="image" class="w-50 h-50" alt="">
                 <div class="card-body">
+                  <img class="img-fluid" src="/uploads/<%= books.image %>" alt="image" width="80">
                     <div class="mb-3">
                         <label for="image" class="form-label fw-bold">Image</label>
                         <input type="file" class="form-control" name="image" id="image" value="<%= books.image %>" aria-describedby="emailHelp">
@@ -118,7 +126,7 @@
                       <br>
                     <label for="category">Fiction:</label><input type="checkbox" name="category" id="category" value="Fiction"/>
                     <br>
-                    <label for="category">Non-Fiction:</label><input type="checkbox" name="category" id="category" value="nonFiction"/>
+                    <label for="category">Non-Fiction:</label><input type="checkbox" name="category" id="category" value="Non-Fiction"/>
                     <br>
                     <label for="category">Drama:</label><input type="checkbox" name="category" id="category" value="Drama"/>
                     <br>

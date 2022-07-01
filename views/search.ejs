@@ -90,7 +90,12 @@
         <% if (books.length > 0) { %> <% books.forEach(function(book)
         { %>
         <div class="card" style="width: 18rem;">
-  <img src="<%= book.image %>" class="card-img-top" alt="...">
+          <img
+                      class="img-fluid"
+                      src="/uploads/<%= book.image %>"
+                      alt="image"
+                      width="500"
+                    />
   <div class="card-body">
     <h4 class="card-title text-center"><%= book.title %></h4>
     <p class="card-text">Description: <%= book.description %></p>

@@ -30,12 +30,13 @@ app.use('/css', express.static(__dirname + 'public/css'));
 app.use('/media', express.static(__dirname + 'public/media'));
 app.use('/js', express.static(__dirname + 'public/js'));
 app.use('/js', express.static(__dirname + 'public/assets'));
+app.use('/uploads', express.static(__dirname + 'public/uploads'));
 app.use(express.static('uploads'));
-
+app.use(express.static(__dirname + 'uploads'));
 // image upload
 var storage = multer.diskStorage({
     destination: function(req, file, cb){
-        cb(null, './uploads');
+        cb(null, './public/uploads');
     },
     filename: function(req, file, cb) {
         cb(null, file.fieldname +"_"+ Date.now() +"_"+ file.originalname)

@@ -33,7 +33,10 @@
               background: hsl(0, 0, 94%);
               height: 100%;
           }
-          
+          a{
+            text-decoration: none;
+            color: black;
+          }
       </style>
   </head>
   
@@ -43,7 +46,7 @@
     <img src="img/library-shelves-banner-photo.jpg" class="img-fluid h-25 w-100" alt="..." style="position:relative ">
 
     <div class="container-fluid my-5">
-      <h1 class="text-center fw-bold display-3 mb-5">Featured <span class="text-success">Category</span></h1>
+      <h1 class="text-center fw-bold display-3 mb-5"><span class="text-success">Category</span></h1>
 <div class="row">
           <div class="col-12 m-auto">
               <div class="owl-carousel owl-theme">
@@ -51,7 +54,7 @@
                   <div class="item mb-4">
                       <div class="card border-0 shadow">
                        
-                          <img src="<%= category.image %>" alt="" class="card-img-top">
+                          <img src="uploads/<%= category.image %>" alt="" class="card-img-top">
                           <div class="card-body">
                               <div class="card-title text-center">
                                   <h4><%= category.name %> </h4>
@@ -65,7 +68,6 @@
                     <% } %>
               </div>
           </div>
-          <a class="btn btn-info w-25 mx-auto my-5"> View All Categories</a>
       </div>
      
       <h1 class="text-center fw-bold display-3 mb-5">Get Latest <span class="text-success">Novel Books</span></h1>
@@ -73,18 +75,18 @@
                 <div class="col-12 m-auto">
                     <div class="owl-carousel owl-theme">
                       <%  if(books.length > 0) { %> <% books.forEach(book => { %>
-                        <div class="item mb-4">
+                       <a href="/books/<%= book._id %>"> <div class="item mb-4">
                             <div class="card border-0 shadow">
                              
-                                <img src="<%= book.image %>" alt="" class="card-img-top">
+                                <img src="/uploads/<%= book.image %>" alt="" class="card-img-top">
                                 <div class="card-body">
                                     <div class="card-title text-center">
                                         <h4><%= book.title %> </h4>
                                     </div>
-                                    <a href="<%= book.link %> " target="_blank">Read</a>
                                 </div>
                             </div>
                         </div>
+                    </a>
                         <% }) %> <%}else { %>
                           <h1>Cant fetch data</h1>
                           <% } %>
