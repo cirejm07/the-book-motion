@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+    <%- include('partials/head.ejs') %> 
+    <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+          integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+          crossorigin="anonymous" />
+      <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+          integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+          crossorigin="anonymous" />
+ <style>
+          @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+  
+          * {
+              font-family: 'Poppins', sans-serif;
+          }
+  
+          img {
+              height: 300px !important;
+              height: 400px !important;
+          }
+          html{
+            height: 300vh;
+          }
+          body {
+              background: hsl(0, 0, 94%);
+              height: 100%;
+          }
+          
+
+          
+      </style>
+  </head>
+  
+  <body >
+      <%- include('partials/navbar.ejs') %> 
+      <%- include('partials/userHead.ejs') %> 
+
+
+    <main class="container">
+        <h2 class="text-center mt-5 text-capitalize">Can't decide which novel book to read?</h2>
+        <h3 class="text-center fw-bold text-success text-capitalize">Try our random novel book selector</h3>
+        <div class="row p-4 p-md-5 text-white bg-transparent rounded">
+            <div class="col-md-5">
+                <img class="img-fluid" src="/uploads/<%= book.image %>" alt="image"> 
+            </div>
+            <div class="col-md-7 text-dark">  
+                <h1 class="display-1 fst-italic "><%= book.title %></h1>
+                <p class="lead my-3"><%= book.description %> </p>
+                <p class="lead mb-0">
+                    <a href="/books/<%= book._id  %>" class="text-info fw-bold">Continue Reading...</a>
+                </p>
+            </div>
+        </div>
+<!-- -- featured post -->
+<h1 class="text-center fw-bold display-3 mb-5 mt-5">All <span class="text-success">Novel Books</span></h1>
+        
+    <div class="row mb-2">
+        <% if (books.length > 0) { %>
+       <%  books.forEach((book) => { %>
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col-auto d-none d-lg-block">
+                    <img class="img-fluid" src="/uploads/<%= book.image %>" alt="image">
+                </div>
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">Genre &nbsp; <span class="text-dark"><%= book.category %> </span></strong>
+                    <h5 class="mb-0 display-5"><%= book.title %></h5>
+                    <div class="mb-1 text-muted">By <%= book.author %></div>
+                    <p class="card-text mb-auto"> Description : <%= book.description %> </p>
+                    <a href="<%= book.link %>" target="_blank" class="stretched-link">Start Reading</a>
+                </div>
+            </div>
+        </div>
+       <%  }) %>
+        <% } %>
+       
+    </div>
+
+            
+        
+</main>
+
+
+    <%- include('partials/footer.ejs') %> 
+</body>
+</html>

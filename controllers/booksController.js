@@ -23,7 +23,19 @@ module.exports.add_adminBook = (req,res) => {
     res.render('adminAddBookView')
 }
 
+module.exports.view_allBooks = async (req,res) => {
 
+    let count = await Books.find().countDocuments();
+    let random = Math.floor(Math.random() * count)
+    let book = await Books.findOne().skip(random).exec()
+
+     let getAllBooks = await Books.find({isActive: true}).sort({createdAt: -1})
+    
+    res.render('allBooks', {books:getAllBooks, book})
+
+
+   
+}
 // ordinary
 module.exports.getById_ordinaryBook = (req, res) => {
     const id = req.params.id;

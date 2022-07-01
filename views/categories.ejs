@@ -24,65 +24,73 @@
           }
   
           img {
-              height: 280px !important;
+              width:300px ;
+              height: 250px;
+          }
+          html{
+            height: 150vh;
           }
           body {
               background: hsl(0, 0, 94%);
               height: 100%;
           }
-          .home .content .btn:hover{
-    color: #00704A;
-    background-color: whitesmoke;
-    font-weight: bold;
-} 
-nav a:hover {
-  color: #00704A !important;
- }
+          
+          #mainContainer {
+            margin: auto;
+            margin-top: 5rem;
+          }
+
       </style>
   </head>
   
   <body >
       <%- include('partials/navbar.ejs') %> 
       <nav
-  id="navBar"
-  class="navbar sticky-top bg-dark navbar-expand-lg navbar-light d-flex justify-content-between"
->
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-  <div
-    class="justify-content-center collapse navbar-collapse"
-    id="navbarTogglerDemo02"
-  >
-    <ul class="navbar-nav gap-2 mb-2 mb-lg-0 ms-2">
-      <li class="nav-item">
-        <a class="nav-link active text-light" aria-current="page" href="/"
-          >Home</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="/allBooks">Novel Books</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="/about">About Us</a>
-      </li>
-    </ul>
-    <form method="POST" action="/search" class="d-flex d- mx-auto">
-      <input
-        class="form-control me-2"
-        name="searchTerm"
-        type="search"
-        placeholder="Search"
-        aria-label="Search"
-      />
-    </form>
-  </div>
-</nav>
-    <div class="row d-flex justify-content-around">
-
-        <% if (books.length > 0) { %> <% books.forEach(function(book)
+      id="navBar"
+      class="navbar sticky-top bg-dark navbar-expand-lg navbar-light d-flex justify-content-between"
+    >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="justify-content-center collapse navbar-collapse"
+        id="navbarTogglerDemo02"
+      >
+        <ul class="navbar-nav gap-2 mb-2 mb-lg-0">
+          <li class="nav-item btn">
+            <a class="nav-link active text-light" aria-current="page" href="/"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item btn">
+            <a class="nav-link text-light" href="#">Novel Books</a>
+          </li>
+          <li class="nav-item btn">
+            <a class="nav-link text-light" href="/about">About Us</a>
+          </li>
+        </ul>
+        <form method="POST" action="/search" class="d-flex d- mx-auto">
+          <input
+            class="form-control me-2"
+            name="searchTerm"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+        </form>
+      </div>
+    </nav>
+   
+    <div class="row justify-content-around mt-5">
+        <% if (categoryById.length > 0) { %> <% categoryById.forEach(function(book)
         { %>
         <div class="card col-md-4 mt-5" style="width: 18rem;">
           <img
@@ -104,8 +112,9 @@ nav a:hover {
   </div>
 </div>
 <% }) %> <% } %>
-
 </div>
+    
+
 
     <%- include('partials/footer.ejs') %> 
   </body>

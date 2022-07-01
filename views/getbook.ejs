@@ -24,7 +24,8 @@
           }
   
           img {
-              width:500px ;
+              width:300px ;
+              height: 250px;
           }
           html{
             height: 100vh;
@@ -46,8 +47,7 @@
       <%- include('partials/navbar.ejs') %> 
       <nav
       id="navBar"
-      class="navbar sticky-top navbar-expand-lg navbar-light d-flex justify-content-between"
-      style="background: #455a3c"
+      class="navbar sticky-top bg-dark navbar-expand-lg navbar-light d-flex justify-content-between"
     >
       <button
         class="navbar-toggler"
@@ -65,19 +65,16 @@
         id="navbarTogglerDemo02"
       >
         <ul class="navbar-nav gap-2 mb-2 mb-lg-0">
-          <li class="nav-item btn btn-outline-success">
+          <li class="nav-item btn">
             <a class="nav-link active text-light" aria-current="page" href="/"
               >Home</a
             >
           </li>
-          <li class="nav-item btn btn-outline-success">
-            <a class="nav-link text-light" href="#">Featured</a>
+          <li class="nav-item btn">
+            <a class="nav-link text-light" href="#">Novel Books</a>
           </li>
-          <li class="nav-item btn btn-outline-success">
-            <a class="nav-link text-light" href="#">Categories</a>
-          </li>
-          <li class="nav-item btn btn-outline-success">
-            <a class="nav-link text-light" href="#">About Us</a>
+          <li class="nav-item btn">
+            <a class="nav-link text-light" href="/about">About Us</a>
           </li>
         </ul>
         <form method="POST" action="/search" class="d-flex d- mx-auto">

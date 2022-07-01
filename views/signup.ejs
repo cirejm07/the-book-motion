@@ -2,37 +2,99 @@
     <%- include('partials/head.ejs') %> 
   <body>
     <%- include('partials/navbar.ejs') %> 
-    <h1 class="text-center my-5">SIGN UP</h1>
+    <h1 class="text-center my-5   text-dark w-50 px-auto mx-auto fw-bold align-center border-1 rounded"
+    >SIGN UP</h1>
     <form class="w-50 mx-auto">
       <div class="formError text-danger"></div>
       
         <div class="mb-3">
          
-          <label for="name" class="form-label">Name</label>
+          <label for="name" class="text-dark form-label">Name</label>
           <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required>
         </div>
         <div class="mb-3">
         
-          <label for="email" class="form-label">Email address</label>
+          <label for="email" class="text-dark form-label">Email address</label>
           <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <div id="emailHelp" class="text-secondary form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
           
-          <label for="password" class="form-label">Password</label>
+          <label for="password" class="text-dark form-label">Password</label>
           <input type="password" class="form-control" id="password" name="password" required>
         </div>
         <div class="mb-3">
         
-          <label for="security_question" class="form-label">Confirm Password</label>
+          <label for="security_question" class=" text-dark form-label">Confirm Password</label>
           <input type="password" class="form-control" id="repeat_password" name="repeat_password" aria-describedby="emailHelp" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign up</button>
+        <button type="submit" class="  btn btn-success">Sign up</button>
       </form>
       
 
-      <%- include('partials/footer.ejs') %> 
+     <!-- <footer class="bg-white text-center p-1 fixed-bottom">
+  <p class="fs-2 fw-bold text-uppercase pt-3">MINIPROJECT 2</p>
+</footer> -->
+
+<!-- Remove the container if you want to extend the Footer to full width. -->
+
+<footer
+class="text-center text-white fixed-bottom"
+style="background: #869161"
+>
+<!-- Grid container -->
+<div class="container p-1 pb-0">
+  <!-- Section: Social media -->
+  <section class="mb-2">
+    <!-- Facebook -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-facebook-f"></i
+    ></a>
+
+    <!-- Twitter -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-twitter"></i
+    ></a>
+
+    <!-- Google -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-google"></i
+    ></a>
+
+    <!-- Instagram -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-instagram"></i
+    ></a>
+
+    <!-- Linkedin -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-linkedin-in"></i
+    ></a>
+
+    <!-- Github -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-github"></i
+    ></a>
+  </section>
+  <!-- Section: Social media -->
+</div>
+<!-- Grid container -->
+
+<!-- Copyright -->
+<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+  © 2022 Copyright: All Rights Reserved!
+  <a class="text-white" href="https://mdbootstrap.com/"></a>
+</div>
+<!-- Copyright -->
+</footer>
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+crossorigin="anonymous"
+></script>
+
 
       <script>
         const form = document.querySelector('form');

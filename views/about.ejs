@@ -1,22 +1,60 @@
 <!DOCTYPE html>
     <%- include('partials/head.ejs') %> 
+    <style>
+      img {
+        width: 100%;
+      }
+    </style>
   <body>
     <%- include('partials/navbar.ejs') %> 
-    <div class="jumbotron text-center mt-5">
+    <%- include('partials/userHead.ejs') %> 
+    <div class="card bg-dark text-white text-center">
+      <img src="img/photo.jpg" class="card-img" alt="...">
+      <div class="card-img-overlay col-12 mt-5">
+        <h1 class="card-title">About Us</h1>
+        <p class="card-text lead fw-bold fs-5">This is for project purposes only. We do not want to intend to sell this project or be a part of any organization that produces so called money. </p>
+        <div>
+          <h1 class="text-capitalize text-center my-5">Members of the project</h1>
+          <div class="mx-auto d-md-flex justify-content-center mt-5">
+            <div>
+              <img class="img-responsive" src="/img/irwin.svg" alt="">
+              <p>Irwin</p>
+            </div>
+          <div>
+            <img class="img-responsive" src="/img/hero-img.svg" alt="">
+            <p>Jeric</p>
+          </div>
+          <div>
+            <img class="img-responsive" src="/img/prince.svg" alt="">
+            <p>Prince</p>
+          </div>
+
+          </div>
+        
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- <div class="jumbotron text-center mt-5">
         <div>
           
-          <img src="/img/irwin.svg" alt="">
-          <img src="/img/hero-img.svg" alt="">
-          <img src="/img/prince.svg" alt="">
+        
+          
         </div>
         <p class="lead my-5">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
         <p class="lead">
-          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+          <a class="btn btn-success btn-lg" href="#" role="button">Learn more</a>
         </p>
       </div>
-  </div>
+  </div> -->
   <%- include('partials/footer.ejs') %> 
+  <script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+  crossorigin="anonymous"
+></script>
   </body>
 </html>

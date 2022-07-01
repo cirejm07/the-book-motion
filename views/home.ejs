@@ -5,6 +5,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
   
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
   
       <!-- Bootstrap CSS -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -24,37 +26,111 @@
           }
   
           img {
-              height: 280px;
+              height: 300px !important;
           }
           html{
-            height: 300vh;
+           
+            scroll-behavior: smooth;
           }
           body {
               background: hsl(0, 0, 94%);
-              height: 100%;
+              
           }
           a{
             text-decoration: none;
             color: black;
           }
-      </style>
-  </head>
-  
-  <body >
-      <%- include('partials/navbar.ejs') %> 
-      <%- include('partials/userHead.ejs') %> 
-    <img src="img/library-shelves-banner-photo.jpg" class="img-fluid h-25 w-100" alt="..." style="position:relative ">
+
+          
+.home{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:url(/img/934072.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.home .content{
+    max-width: 50rem;
+    padding-left: 1rem;
+}
+
+.home .content h2{
+    font-size: 2.2rem;
+    text-transform: capitalize;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-weight: bold;
+    text-shadow: 4px 4px black;
+}
+.navbar {
+    background:#00704A;
+}
+
+.home .content p{
+    font-size: 2.5rem;
+    font-weight: italic;
+    line-height: 1.1;
+    padding:.01rem 0;
+    color: #00704A;
+    text-shadow: 2px 2px  black;
+
+}
+
+.home .content .btn {
+    background-color: transparent;
+    border-color: white;
+    opacity: 100%;
+    border-width: 5px;
+    font-size: 25px;
+
+}
+.home .content .btn:hover{
+    color: #00704A;
+    background-color: whitesmoke;
+    font-weight: bold;
+}   
+
+#cards{
+ height: 420px;
+}
+
+#viewAllBooks {
+    width: fit-content;
+}
+        </style>
+    </head>
+    
+    <body>
+        <%- include('partials/navbar.ejs') %> 
+        <%- include('partials/userHead.ejs') %> 
+
+        <!-- HOME section starts -->
+<section class="home" id="home">
+    <div class="content"><br><br>
+        <h2>Meet your next Favorite Novel Book</h2>
+        <br>
+        <p> 100% Free Books Available </p>
+        <br><br><br>
+            <a href="/allBooks" class="btn text-success" id="ordernow"> Read Now</a>
+    </div>
+</section>
+
+    <!-- HOME section ends -->
+    <!-- <img src="img/library-shelves-banner-photo.jpg" class="img-fluid h-25 w-100" alt="..." style="position:relative "> -->
 
     <div class="container-fluid my-5">
-      <h1 class="text-center fw-bold display-3 mb-5"><span class="text-success">Category</span></h1>
+      <h1 class="text-center fw-bold display-3 mb-5">Featured <span class="text-success">Categories</span></h1>
 <div class="row">
           <div class="col-12 m-auto">
               <div class="owl-carousel owl-theme">
                 <%  if(categories.length > 0) { %> <% categories.forEach(category => { %>
                   <div class="item mb-4">
+                    <a href="/categories/<%= category.name %>">
                       <div class="card border-0 shadow">
                        
-                          <img src="uploads/<%= category.image %>" alt="" class="card-img-top">
+                        <img src="uploads/<%= category.image %>" alt="" class="card-img-top">
                           <div class="card-body">
                               <div class="card-title text-center">
                                   <h4><%= category.name %> </h4>
@@ -62,6 +138,7 @@
                               
                           </div>
                       </div>
+                    </a>
                   </div>
                   <% }) %> <%}else { %>
                     <h1>Cant fetch data</h1>
@@ -70,19 +147,21 @@
           </div>
       </div>
      
-      <h1 class="text-center fw-bold display-3 mb-5">Get Latest <span class="text-success">Novel Books</span></h1>
+      <h1 class="text-center fw-bold display-3 mb-5 mt-5">New Releases <span class="text-success">Books</span></h1>
       <div class="row">
+      
                 <div class="col-12 m-auto">
                     <div class="owl-carousel owl-theme">
                       <%  if(books.length > 0) { %> <% books.forEach(book => { %>
-                       <a href="/books/<%= book._id %>"> <div class="item mb-4">
-                            <div class="card border-0 shadow">
+                        <a href="/books/<%= book._id %>">
+                        <div class="item mb-4">
+                            <div id="cards" class="card border-0 shadow ">
                              
-                                <img src="/uploads/<%= book.image %>" alt="" class="card-img-top">
-                                <div class="card-body">
+                                <img src="uploads/<%= book.image %>" alt="" class="card-img-top">                                <div class="card-body">
                                     <div class="card-title text-center">
                                         <h4><%= book.title %> </h4>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -92,23 +171,18 @@
                           <% } %>
                     </div>
                 </div>
-                <a class="btn btn-info w-25 mx-auto my-5"> View Novel All Books</a>
+                <a href="/allBooks" class="btn btn-success mx-auto my-2 mt-5 mb-5 strong" id="viewAllBooks"> 📚 View All Books</a>
             </div>
-
-            
-          
+       
   </div>
-
-
-
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-      crossorigin="anonymous"></script>
+      crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
       integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
       crossorigin="anonymous"></script>

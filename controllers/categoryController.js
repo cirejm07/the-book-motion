@@ -1,4 +1,5 @@
 const Category = require('../model/Category')
+const Books = require('../model/Book')
 const multer = require('multer');
 
 
@@ -24,4 +25,16 @@ module.exports.getById_category = (req, res) => {
 
 module.exports.view_addCategory = (req,res) => {
     res.render('addCategoryView')
+}
+
+module.exports.view_categories = async (req,res) => {
+
+    try{
+        let categoryId = req.params.id;
+    const categoryById = await Books.find({ 'category': categoryId })
+    res.render('categories', {categoryById})
+    } catch(error){
+        res.status(500).json({message:error.message})
+    }
+    
 }
