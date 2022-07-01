@@ -78,7 +78,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/getBook">
                   <span
                     data-feather="shopping-cart"
                     class="align-text-bottom"
@@ -98,7 +98,7 @@
           <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
           >
-            <h1 class="h2">Dashboard</h1>
+            <h1 class="h2">Overview</h1>
           </div>
 
           <div
@@ -107,25 +107,34 @@
             <p class="text-center fs-3 text-uppercase fw-bold">
               Users Overview
             </p>
+            <div class="row justify-content-center">
             <div class="col-sm-3">
               <div class="card">
-                <div class="card-body fs-3 text-center fw-bold">
+                <div class="card fs-3 text-center fw-bold">
+                  <img src="img/users.jpg" class="card-img">
+                  <div class="card-img-overlay">
                   <h5 class="card-title">Ordinary Users</h5>
                   <p class="card-text"><%= ordinaryUserQty %></p>
                 </div>
               </div>
             </div>
+          </div>
             <div class="col-sm-3">
               <div class="card">
-                <div class="card-body fs-3 text-center fw-bold">
+                <div class="card fs-3 text-center fw-bold">
+                  <img src="img/download.jpg" class="card-img">
+                  <div class="card-img-overlay">
                   <h5 class="card-title">Admin</h5>
                   <p class="card-text"><%= adminQty %></p>
                 </div>
               </div>
             </div>
+          </div>
             <div class="col-sm-3">
               <div class="card">
-                <div class="card-body fs-3 text-center fw-bold">
+                <div class="card fs-3 text-center fw-bold">
+                  <img src="img/users.jpg" class="card-img">
+                  <div class="card-img-overlay">
                   <h5 class="card-title">Total Users</h5>
                   <p class="card-text"><%= getUsersQty %></p>
                 </div>
@@ -137,28 +146,37 @@
           <div
             class="row d-flex flex-row justify-content-center align-items-center"
           >
-            <p class="text-center fs-3 text-uppercase fw-bold">
+            <p class="text-center fs-3 text-uppercase fw-bold mt-3">
               Category Overview
             </p>
-            <div class="col-sm-3">
-              <div class="card">
-                <div class="card-body fs-3 text-center fw-bold">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card fs-3 text-center fw-bold">
+                    <img src="img/category.jpg" class="card-img">
+                    <div class="card-img-overlay">
                   <h5 class="card-title">Active Categories</h5>
                   <p class="card-text"><%= activeCategory %></p>
                 </div>
               </div>
             </div>
+          </div>
             <div class="col-sm-3">
               <div class="card">
-                <div class="card-body fs-3 text-center fw-bold">
+                <div class="card fs-3 text-center fw-bold">
+                  <img src="img/Categories.jpg" class="card-img">
+                  <div class="card-img-overlay">
                   <h5 class="card-title">Inactive Categories</h5>
                   <p class="card-text"><%= inactiveCategory %></p>
                 </div>
               </div>
             </div>
+          </div>
             <div class="col-sm-3">
               <div class="card">
-                <div class="card-body fs-3 text-center fw-bold">
+                <div class="card fs-3 text-center fw-bold">
+                  <img src="img/category.jpg" class="card-img">
+                  <div class="card-img-overlay">
                   <h5 class="card-title">Total Categories</h5>
                   <p class="card-text"><%= categoryQty %></p>
                 </div>
@@ -170,28 +188,37 @@
           <div
             class="row d-flex flex-row justify-content-center align-items-center"
           >
-            <p class="text-center fs-3 text-uppercase fw-bold">
+            <p class="text-center fs-3 text-uppercase fw-bold mt-3">
               Books Overview
             </p>
-            <div class="col-sm-3">
-              <div class="card">
-                <div class="card-body fs-3 text-center fw-bold">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card fs-3 text-center fw-bold">
+                    <img src="img/bookies.jpg" class="card-img">
+                    <div class="card-img-overlay">
                   <h5 class="card-title">Active Books</h5>
                   <p class="card-text"><%= activeBook %></p>
                 </div>
               </div>
             </div>
+          </div>
             <div class="col-sm-3">
               <div class="card">
-                <div class="card-body fs-3 text-center fw-bold">
+                <div class="card fs-3 text-center fw-bold">
+                  <img src="img/ibook.jpg" class="card-img">
+                  <div class="card-img-overlay">
                   <h5 class="card-title">Inactive Books</h5>
                   <p class="card-text"><%= inactiveBook %></p>
                 </div>
               </div>
             </div>
+          </div>
             <div class="col-sm-3">
               <div class="card">
-                <div class="card-body fs-3 text-center fw-bold">
+                <div class="card fs-3 text-center fw-bold">
+                  <img src="img/bookies.jpg" class="card-img">
+                  <div class="card-img-overlay">
                   <h5 class="card-title">Total Books</h5>
                   <p class="card-text"><%= bookQty %></p>
                 </div>

@@ -1,0 +1,79 @@
+<nav
+  id="navBar"
+  class="navbar sticky-top navbar-expand-lg navbar-light d-flex justify-content-between"
+  style="background: #455a3c"
+>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarTogglerDemo02"
+    aria-controls="navbarTogglerDemo02"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div
+    class="justify-content-center collapse navbar-collapse"
+    id="navbarTogglerDemo02"
+  >
+    <ul class="navbar-nav gap-2 mb-2 mb-lg-0">
+      <li class="nav-item btn btn-outline-success">
+        <a class="nav-link active text-light" aria-current="page" href="/"
+          >Home</a
+        >
+      </li>
+      <li class="nav-item btn btn-outline-success">
+        <a class="nav-link text-light" href="#">Featured</a>
+      </li>
+      <li class="nav-item btn btn-outline-success">
+        <a class="nav-link text-light" href="#">Categories</a>
+      </li>
+      <li class="nav-item btn btn-outline-success">
+        <a class="nav-link text-light" href="#">About Us</a>
+      </li>
+    </ul>
+    <form method="POST" action="/search" class="d-flex d- mx-auto">
+      <input
+        class="form-control me-2"
+        name="searchTerm"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+    </form>
+
+    <div class="me-5">
+      <ul class="d-flex list-unstyled">
+        <!-- if there is a user, show user.name and logout -->
+        <% if (user) { %>
+
+        <div class="btn-group dropstart">
+          <button
+            type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-user"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <!-- Dropdown menu links -->
+            <p class="fw-bold text-center">Welcome, <%= user.name %></p>
+            <hr />
+            <li>
+              <a class="dropdown-item" href="/user/<%= user._id %>">Profile</a>
+            </li>
+            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+          </ul>
+        </div>
+        <% } else { %>
+        <!-- if there is no user, show log in and signup -->
+        <li><a class="btn fs-5" href="/login">Login</a></li>
+        <li><a class="btn me-5 fs-5" href="/signup">Signup</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>

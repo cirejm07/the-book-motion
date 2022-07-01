@@ -22,47 +22,6 @@ module.exports.getById_category = (req, res) => {
     })
 }
 
-module.exports.active_category = async (req ,res) => {
-    let id = req.params.id;
-    let categoryUpdate = await Category.findByIdAndUpdate(id, {
-        isActive: true
-    })
-    .then((result) => {
-        res.status(200).json(result)
-    })
-    .catch((err) => {
-        res.status(500).json(err)
-    })
-   
-}
-
-module.exports.inactive_category = async (req ,res) => {
-    let id = req.params.id;
-    let categoryUpdate = await Category.findByIdAndUpdate(id, {
-        isActive: false
-    })
-    .then((result) => {
-        res.status(200).json(result)
-    })
-    .catch((err) => {
-        res.status(500).json(err)
-    })
-   
-}
-
-// module.exports.update_category = async (req,res) => {
-//     let id = req.params.id;
-
-//     let categoryUpdate = await Category.findByIdAndUpdate(id, {
-//         name: req.body.name,
-//         isActive: req.body.isActive
-//     })
-
-//     if(categoryUpdate) {
-//         res.redirect('/category')
-//     }
-// }
-
 module.exports.view_addCategory = (req,res) => {
     res.render('addCategoryView')
 }

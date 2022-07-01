@@ -3,6 +3,8 @@ const Category = require('../model/Category');
 const Book = require('../model/Book');
 const { registrationValidation } = require('../middleware/validation');
 const { loginValidation } = require('../middleware/validation');
+const { updateUser } = require('../middleware/validation');
+const { updatePassword } = require('../middleware/validation');
 const { requireAuth, checkUser, verifyAdmin } = require('../middleware/auth')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -19,11 +21,39 @@ const createToken = (id) => {
     })
 }
 
+module.exports.searchItem = async (req,res) => {
 
+// searchTerm
+try{
+    let searchTerm = req.body.searchTerm
+    let id = req.params.id
+    let user = await User.findById(id)
+    // let category = await Category.find( { $text: { $search: searchTerm, $diacriticSensitive: true } } );
+    let book = await Book.find( { $text: { $search: searchTerm, $diacriticSensitive: true } } );
+    res.render('search', {user:user, books:book})
+}catch(error){
+    res.status(500).json({message: error.message})
+}
+
+   
+}
 
 // index page
-module.exports.home_get = (req,res) => {
-    res.render('home');
+module.exports.home_get = async (req,res) => {
+    
+    try{ 
+    let getCategory = await Category.find().sort({isActive: -1}).limit(5)
+    let getLatestBook = await Book.find({isActive: true}).sort({createdAt: -1}).limit(10)
+    res.render('home', {categories:getCategory, books:getLatestBook})
+    } catch(error){
+        res.json(error)
+    }
+      
+
+    // .then((result) => {
+    //     res.status(200).render('home', {categories:result, books:result})
+    // })
+    // .catch((err) => res.status(500).json(err))
 }
 
 // view about page
@@ -34,6 +64,61 @@ module.exports.about_get = (req, res) => {
 // view sign up page
 module.exports.signup_get = (req,res) => {
     res.render('signup');
+}
+// update user
+module.exports.update_user = async (req,res) => {
+    const {error} = updateUser(req.body)
+    if(error) return res.status(400).json(error.details[0].message)
+    let id = req.params.id;
+    const userEmail = await User.findOne({email: req.body.email})
+    if(userEmail) return res.status(400).json('Email already exist')
+    let userUpdate =  await User.findByIdAndUpdate(id, {
+        name: req.body.name,
+        email: req.body.email
+    })
+    // if(userUpdate)
+    // res.redirect('/')
+    try{
+        res.status(200).json({user:userUpdate})
+    }catch(err){
+        res.status(400).json({error})
+    }
+}
+
+// view Change password
+module.exports.view_changePassword = (req, res) => {
+    const id = req.params.id;
+    
+    User.findById(id)
+    .then((result) => {
+        res.status(200).render('changePassword', {user:result})
+    })
+    .catch(err => res.status(500).json(err))
+}
+
+// change password
+module.exports.user_changePassword = async (req, res) => {
+    const {error} = updatePassword(req.body)
+    if(error) return res.status(400).json(error.details[0].message)
+    
+    let id = req.params.id;
+    const user = await User.findById(id)
+    // validate password
+    const userPass = await bcrypt.compare(req.body.password, user.password)
+    if(!userPass) return res.status(400).json("Current Password did not match")
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(req.body.newPassword, salt)
+    let userUpdate =  await User.findByIdAndUpdate(id, {
+        password: hashedPassword,
+        repeat_password: hashedPassword
+    })
+    // if(!userUpdate) return res.status(404).json('Cannot update password')
+    // res.redirect('/')
+    try{
+        res.status(200).json({user:userUpdate})
+    }catch(err){
+        res.status(400).json({error})
+    }
 }
 
 // sign up
@@ -165,27 +250,5 @@ module.exports.get_users = (req,res) => {
     .then((result) => {
         res.render('users', {users:result})
     })
-}
-
-module.exports.add_category = (req,res) => {
-    const category = new Category (
-        req.body
-    )
-    category.save()
-    .then((result) => {
-         res.status(200).json(result)
-    })
-    .catch(err => res.status(500).json(err))
-}
-
-module.exports.add_books = (req,res) => {
-    const books = new Book (
-        req.body
-    )
-    books.save()
-    .then((result) => {
-         res.status(200).json(result)
-    })
-    .catch(err => res.status(500).json(err))
 }
 

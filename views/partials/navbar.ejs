@@ -1,32 +1,3 @@
 <div class="text-center d-flex">
   <a class="ms-5 mt-3 fs-2 text-decoration-none" href="/">The Book Motion</a>
-  <ul class="d-flex list-unstyled ms-auto my-5">
-    <!-- if there is a user, show user.name and logout -->
-    <% if (user) { %>
-    <div class="dropdown me-5">
-      <a
-        class="btn btn-secondary dropdown-toggle"
-        href="#"
-        role="button"
-        id="dropdownMenuLink"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        <i class="fa-solid fa-user"></i>
-      </a>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <p class="fw-bold text-center"><%= user.name %></p>
-        <hr />
-        <li>
-          <a class="dropdown-item" href="/user/<%= user._id %>">Profile</a>
-        </li>
-        <li><a class="dropdown-item" href="/logout">Logout</a></li>
-      </ul>
-    </div>
-    <% } else { %>
-    <!-- if there is no user, show log in and signup -->
-    <li><a class="btn fs-5" href="/login">Login</a></li>
-    <li><a class="btn me-5 fs-5" href="/signup">Signup</a></li>
-    <% } %>
-  </ul>
 </div>

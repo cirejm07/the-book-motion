@@ -12,11 +12,14 @@ router.get('/about', usersController.about_get)
 router.get('/books', usersController.get_books)
 router.get('/authFail', usersController.notAuthorized_get)
 router.get('/user/:id',  usersController.find_user)
+router.post('/user/:id', usersController.update_user)
+router.get('/changePassword/:id', usersController.view_changePassword)
+router.post('/changePassword/:id', usersController.user_changePassword)
+router.post('/search', usersController.searchItem)
 // router.get('/admin', usersController.get_user)
 // admin
 router.get('/admin', usersController.get_admin)
 router.get('/users', usersController.get_users)
-router.post('/addCategory', usersController.add_category)
-router.post('/addBook', usersController.add_books)
+
 
 module.exports = router;

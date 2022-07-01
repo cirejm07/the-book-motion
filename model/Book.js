@@ -22,8 +22,8 @@ const bookSchema = new mongoose.Schema({
         required: true
     },
     category: {
-        type:String,
-        enum:['Fiction','nonFiction','Drama','Poetry','Folktale'],
+        type:Array,
+        default: [],
         required: true
     },
     isActive: {
@@ -31,6 +31,8 @@ const bookSchema = new mongoose.Schema({
         default: true
     }
 }, {timestamps: true})
+
+bookSchema.index({title: 'text', description: 'text', category:'text', author:'text'})
 
 const Book = mongoose.model('Book',  bookSchema);
 module.exports = Book;

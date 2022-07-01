@@ -1,5 +1,6 @@
 // import
 const Category = require('./model/Category')
+const Book = require('./model/Book')
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -10,6 +11,7 @@ const { requireAuth, checkUser, verifyAdmin } = require('./middleware/auth')
 const app = express();
 const usersRoutes = require('./router/usersRoutes')
 const categoryRoutes = require('./router/categoryRoutes')
+const bookRoutes = require('./router/bookRoutes')
 dotEnv.config();
 
 // view engine
@@ -61,11 +63,18 @@ app.get('/category', verifyAdmin, (req,res,next) =>{
 app.get('/addCategory', verifyAdmin, (req,res,next) =>{
     next()  
 });
+app.get('/addBook', verifyAdmin, (req,res,next) =>{
+    next()  
+});
+app.get('/getBook', verifyAdmin, (req,res,next) =>{
+    next()  
+});
 app.get('/books', requireAuth,(req, res,next) => {
     next()
 })
 
-app.post('/addCategory', upload, (req,res,next) => {
+// Category
+app.post('/addCategory', upload, verifyAdmin,(req,res,next) => {
     const category = new Category ({
         name: req.body.name,
         image: req.file.filename
@@ -74,7 +83,7 @@ app.post('/addCategory', upload, (req,res,next) => {
     res.redirect('/category')
 })
 
-app.post('/category/:id', upload, async (req,res,next) => {
+app.post('/category/:id', upload, verifyAdmin, async (req,res,next) => {
     if(req.file){
     var data = {
         ...req.body,
@@ -94,10 +103,41 @@ app.post('/category/:id', upload, async (req,res,next) => {
     }
 })
 
+// Books
+app.post('/addBook', upload, verifyAdmin, (req,res,next) => {
+    const book = new Book ({
+        ...req.body,
+        image: req.file.filename
+    })
+    book.save()
+    res.redirect('/getBook')
+})
+
+app.post('/getBook/:id', upload, verifyAdmin, async (req,res,next) => {
+    if(req.file){
+    var data = {
+        ...req.body,
+        image: req.file.filename
+    }
+    } else{
+        var data = {
+            ...req.body,
+        }
+    }
+    let id = req.params.id;
+    console.log(req.file)
+    let categoryUpdate = await Book.findByIdAndUpdate(id, data)
+    
+    if(categoryUpdate) {
+        res.redirect('/getBook')
+    }
+})
+
 // admin
 // app.get('/home', requireAuth, verifyAdmin, (req,res,next) => res.render('home'));
 app.use(usersRoutes)
 app.use(categoryRoutes)
+app.use(bookRoutes)
 
 
 

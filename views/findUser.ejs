@@ -3,16 +3,74 @@
   <%- include('partials/head.ejs') %>
   <body>
     <%- include('partials/navbar.ejs') %>
+    <div class="formError text-danger fs-5 text-center"></div>
 
-    <div class="card mx-auto" style="width: 50%">
-      <div class="card-body">
-        <h5 class="card-title">Name: <%= user.name %></h5>
-        <h6 class="mb-2">Email: <%= user.email %></h6>
-        <p>Password: <%= user.password %></p>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+    <form action="/user/<%= user._id %>" method="POST" class="w-50 mx-auto">
+      <div class="formError text-danger fs-5"></div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          value="<%= user.name %>"
+          aria-describedby="namelHelp"
+        />
       </div>
-    </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          value="<%= user.email %>"
+          aria-describedby="emailHelp"
+        />
+      </div>
+
+      <div class="col-12 d-md-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a class="fw-bold" href="/changePassword/<%= user._id %> "
+          >Change Password?</a
+        >
+      </div>
+    </form>
+
     <%- include('partials/footer.ejs') %>
+    <script>
+      const form = document.querySelector("form");
+      const isFormError = document.querySelector(".formError");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        // reset errors
+        isFormError.textContent = "";
+
+        // get the values
+        const email = form.email.value;
+        const name = form.name.value;
+
+        try {
+          const res = await fetch("/user/<%= user._id %>", {
+            method: "POST",
+            body: JSON.stringify({ email, name }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          console.log(data);
+          if (data) {
+            isFormError.textContent = data;
+          }
+
+          if (data.user) {
+            isFormError.textContent = "";
+            location.assign("/");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    </script>
   </body>
 </html>
