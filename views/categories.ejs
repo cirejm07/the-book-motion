@@ -27,9 +27,6 @@
               width:300px ;
               height: 250px;
           }
-          html{
-            height: 150vh;
-          }
           body {
               background: hsl(0, 0, 94%);
               height: 100%;
@@ -89,7 +86,7 @@
       </div>
     </nav>
    
-    <div class="row justify-content-around mt-5">
+    <div class="row justify-content-evenly mt-5">
         <% if (categoryById.length > 0) { %> <% categoryById.forEach(function(book)
         { %>
         <div class="card col-md-4 mt-5" style="width: 18rem;">
